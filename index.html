@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Texture Atlas Previewer</title>
+    <!-- Load PixiJS and Pixi Animate libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pixi-animate-container@latest"></script>
+    <style>
+        body { margin: 0; background-color: #111; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        canvas { border: 1px solid #333; }
+    </style>
+</head>
+<body>
+    <script>
+        // Initialize Pixi Application
+        const app = new PIXI.Application({ 
+            width: 800, 
+            height: 600, 
+            backgroundColor: 0x1d1d1d 
+        });
+        document.body.appendChild(app.view);
+
+        // Load your 3 texture atlas files
+        PIXI.Assets.addBundle('animationBundle', {
+            spritemapPng: 'spritemap1.png',
+            spritemapJson: 'spritemap1.json',
+            animationJson: 'Animation.json'
+        });
+
+        PIXI.Assets.loadBundle('animationBundle').then((resources) => {
+            console.log("Animation files loaded successfully!", resources);
+        }).catch((err) => {
+            console.error("Error loading animation:", err);
+        });
+    </script>
+</body>
+</html>
